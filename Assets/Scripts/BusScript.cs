@@ -8,7 +8,7 @@ public class BusScript : MonoBehaviour
     public float speedModifier;
     private float speed;
     Vector3 startPlace;
-    bool waiting;
+    bool hasWaited;
 
     // Use this for initialization
     void Start()
@@ -16,24 +16,31 @@ public class BusScript : MonoBehaviour
         time = 0;
         speed = 3;
         startPlace = transform.position;
-        waiting = false;
+        hasWaited = false;
     }
 
     // Update is called once per frame
     void Update()
     { 
-        if (transform.position.x < 7 && waiting == false)
+        if (transform.position.x < 7 && hasWaited == false)
         {
             transform.Translate(speedModifier * speed * Time.deltaTime, 0, 0);
         }
         if (transform.position.x >= 7)
         {
-            waiting = true;
+            hasWaited = true;
             time++;
         }
-        if (transform.position.x >= 7 && time > 600)
+        if (transform.position.x >= 7 && time > 400)
         {
             transform.Translate(speedModifier * speed * Time.deltaTime, 0, 0);
+            time++;
+            if (time > 1000)
+            {
+                hasWaited = false;
+                time = 0;
+                transform.position = startPlace;
+            }
         }
     }
 }
