@@ -1,0 +1,4 @@
+<TextureAtlas imagePath="sprites.png">
+	<SubTexture name="christian_animated_000.png" x="18" y="0" width="16" height="31"/>
+	<SubTexture name="christian_animated_001.png" x="0" y="0" width="16" height="31"/>
+</TextureAtlas>
