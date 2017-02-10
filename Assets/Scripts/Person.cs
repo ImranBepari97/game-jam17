@@ -18,7 +18,7 @@ public class Person : MonoBehaviour {
 	void Start () {
         //sets drunkness and view values in the given range
         currentDrunkness = Random.Range(minDrunkness, maxDrunkness);
-        view = Random.Range(minDrunkness, maxDrunkness);
+        view = Random.Range(minView, maxView);
 	}
 	
 	// Update is called once per frame
