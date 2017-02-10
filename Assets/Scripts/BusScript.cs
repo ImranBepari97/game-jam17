@@ -35,5 +35,10 @@ public class BusScript : MonoBehaviour
         {
             transform.Translate(speedModifier * speed * Time.deltaTime, 0, 0);
         }
+        if (time > 1000)
+        {
+            time = 0;
+            transform.position = startPlace;
+        }
     }
 }
