@@ -5,7 +5,8 @@ using UnityEngine;
 public class BusScript : MonoBehaviour
 {
     int time;
-    public float speed;
+    public float speedModifier;
+    private float speed;
     Vector3 startPlace;
 
     // Use this for initialization
@@ -19,7 +20,7 @@ public class BusScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(speed * Time.deltaTime, 0, 0);
+        transform.Translate(speedModifier  * speed * Time.deltaTime, 0, 0);
         time++;
         if(time == 1)
         {
