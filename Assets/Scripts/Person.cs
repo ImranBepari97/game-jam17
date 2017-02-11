@@ -13,6 +13,7 @@ public class Person : MonoBehaviour {
     [SerializeField] int maxView;
     [SerializeField] int view;
     public Slider slider;
+    
 
 
 
@@ -31,5 +32,16 @@ public class Person : MonoBehaviour {
     void addRevolution(float num)
     {
         slider.value = slider.value + num;
+    }
+
+    void crossRoad(Transform destination)
+    {
+        bool roadCrossed = false;
+
+        while(!roadCrossed)
+        {
+
+        }
+        
     }
 }

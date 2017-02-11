@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\CrossingBeacon.cs" />
     <Compile Include="Assets\Scripts\Person.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\personBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Sprites\sprites.xml" />
