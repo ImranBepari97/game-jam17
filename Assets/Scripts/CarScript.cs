@@ -41,6 +41,11 @@ public class CarScript : MonoBehaviour {
         {
             speed = 3;
         }
+
+        if (collision.gameObject.tag == "Person")
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
     void OnBecameInvisible()

@@ -18,6 +18,8 @@ public class Person : MonoBehaviour {
     [SerializeField] RuntimeAnimatorController[] personAnimatorControllers;// animator controllers for people of different views
     [SerializeField] int maxHealth;
     [SerializeField] int currentHealth;
+    [SerializeField] int fightCooldown;
+    bool canFight;
     
     FightRadius fightRadius;
     Vector3 drunkDir;//direction change caused by drunkness
@@ -44,9 +46,10 @@ public class Person : MonoBehaviour {
         currentDrunkness = Random.Range(minDrunkness, maxDrunkness);
         view = Random.Range(minView, maxView);
         anim.runtimeAnimatorController = personAnimatorControllers[view - minView];
-
+        canFight = true;
         maxHealth = 1000;
         currentHealth = 1000;
+        fightCooldown = 5;
         target = beaconPos;
         StartCoroutine(ChangeDirection());
     }
@@ -54,7 +57,7 @@ public class Person : MonoBehaviour {
     // Calculate the probability of starting a fight with another person.
     public void CheckStartFight(Person other)
     {
-        if (fighting == null)
+        if (fighting == null && canFight)
         {
             float distChance = 1 - Vector2.Distance(transform.position, other.transform.position) / (fightRadius.col.radius * transform.localScale.x);
             float viewChance = (float)Mathf.Abs(view - other.view) / (maxView - minView);
@@ -125,6 +128,8 @@ public class Person : MonoBehaviour {
         fighting = null;
         fightRadius.sr.enabled = false;
         anim.SetBool("fighting", false);
+        canFight = false;
+        StartCoroutine(FightCooldown());
     }
 
     //direction change caused by drunkness
@@ -144,5 +149,11 @@ public class Person : MonoBehaviour {
             {
 
             }
+    }
+
+    IEnumerator FightCooldown()
+    {
+        yield return new WaitForSeconds(fightCooldown);
+        canFight = true;
     }
 }
