@@ -15,6 +15,7 @@ public class Person : MonoBehaviour {
     [SerializeField] float speed;
     [SerializeField] float directionChangeIntervalScale;
     [SerializeField] float drunkDirScale;
+    [SerializeField] RuntimeAnimatorController[] personAnimatorControllers;// animator controllers for people of different views
     [SerializeField] int maxHealth;
     [SerializeField] int currentHealth;
     
@@ -22,6 +23,7 @@ public class Person : MonoBehaviour {
     Vector3 drunkDir;//direction change caused by drunkness
     Vector3 beaconPos;//position of crossing beacon
     Animator anim;
+    SpriteRenderer sr;
 
     public Vector3 target;//movement destination
     public Person fighting = null;//who is this person fighting right now?
@@ -30,6 +32,7 @@ public class Person : MonoBehaviour {
     void Awake()
     {
         anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
         fightRadius = GetComponentInChildren<FightRadius>();
         beaconPos = FindObjectOfType<CrossingBeacon>().transform.position;
     }
@@ -40,6 +43,8 @@ public class Person : MonoBehaviour {
         //sets drunkness and view values in the given range
         currentDrunkness = Random.Range(minDrunkness, maxDrunkness);
         view = Random.Range(minView, maxView);
+        anim.runtimeAnimatorController = personAnimatorControllers[view - minView];
+
         maxHealth = 1000;
         currentHealth = 1000;
         target = beaconPos;
