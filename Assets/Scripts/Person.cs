@@ -54,6 +54,7 @@ public class Person : MonoBehaviour {
                 other.fighting = this;
             }
         }
+    }
 
     // Update is called once per frame
     void Update()
