@@ -17,7 +17,12 @@ public class PlayButtonScript : MonoBehaviour {
 
     void playGame()
     {
-        Debug.Log("Hi");
         SceneManager.LoadScene("Main");
+    }
+
+    void quitGame()
+    {
+        Debug.Log("Quit Game");
+        Application.Quit();
     }
 }
