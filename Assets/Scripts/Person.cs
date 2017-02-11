@@ -11,8 +11,6 @@ public class Person : MonoBehaviour {
     [SerializeField] int minView;
     [SerializeField] int maxView;
     [SerializeField] float baseDrunkChance; //base probability of starting a fight when at minDrunkness
-    [SerializeField]
-    float probabilityScale;//multiply fight probability by this amount every check
     [SerializeField] int view;
     [SerializeField] float speed;
     [SerializeField] float directionChangeIntervalScale;
@@ -47,7 +45,7 @@ public class Person : MonoBehaviour {
     {
         if (fighting == null)
         {
-            float distChance = 1 - Vector2.Distance(transform.position, other.transform.position) / fightCollider.radius;
+            float distChance = 1 - Vector2.Distance(transform.position, other.transform.position) / (fightCollider.radius * transform.localScale.x);
             float viewChance = (float)Mathf.Abs(view - other.view) / (maxView - minView);
             float drunkChance = baseDrunkChance + (float)currentDrunkness / (maxDrunkness - minDrunkness) * (1 - baseDrunkChance);
             float chance = 1 - Mathf.Pow(1 - distChance * viewChance * drunkChance, Time.fixedDeltaTime);
@@ -62,8 +60,10 @@ public class Person : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        //addRevolution(5F);
-        transform.Translate(((target - transform.position).normalized * speed + drunkDir).normalized * speed * Time.deltaTime);
+        if (fighting == null)
+        {
+            transform.Translate(((target - transform.position).normalized * speed + drunkDir).normalized * speed * Time.deltaTime);
+        }
     }
 
     void addRevolution(float num)
