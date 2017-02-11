@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Person : MonoBehaviour {
 
@@ -11,18 +12,24 @@ public class Person : MonoBehaviour {
     [SerializeField] int minView;
     [SerializeField] int maxView;
     [SerializeField] int view;
-    
+    public Slider slider;
 
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start() {
         //sets drunkness and view values in the given range
         currentDrunkness = Random.Range(minDrunkness, maxDrunkness);
         view = Random.Range(minView, maxView);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    void Update() {
+        addRevolution(5F);
+    }
+
+    void addRevolution(float num)
+    {
+        slider.value = slider.value + num;
+    }
 }
