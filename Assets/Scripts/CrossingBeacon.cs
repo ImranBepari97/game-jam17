@@ -25,12 +25,18 @@ public class CrossingBeacon : MonoBehaviour {
     //On entering the hitbox radius
     void OnTriggerEnter2D (Collider2D other)
     {
-        sr.enabled = true;
+        if (other.tag == "Player")
+        {
+            sr.enabled = true;
+        }
     }
 
     void OnTriggerExit2D (Collider2D other)
     {
-        sr.enabled = false;
+        if (other.tag == "Player")
+        {
+            sr.enabled = false;
+        }
     }
 
     
