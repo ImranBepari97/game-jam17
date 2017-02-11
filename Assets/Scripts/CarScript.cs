@@ -7,6 +7,7 @@ public class CarScript : MonoBehaviour {
     public float speedModifier;
     public float speed;
     Vector3 startPlace;
+    
 
     // Use this for initialization
     void Start () {
@@ -20,12 +21,30 @@ public class CarScript : MonoBehaviour {
         transform.Translate(speedModifier * speed * Time.deltaTime, 0, 0);
 
 
-        if (time > 1000)
+        if (time > 5000)
         {
             time = 0;
             Destroy(gameObject);
         }
         time++;
 
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Vehicle")
+        {
+            speed = 0;
+        }
+
+        else
+        {
+            speed = 3;
+        }
+    }
+
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 }

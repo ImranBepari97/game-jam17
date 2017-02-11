@@ -8,12 +8,12 @@ public class SpawnScript : MonoBehaviour {
     GameObject personPrefab;
 
     [SerializeField]
-    int timeGap;
-    int curTime;
+    float timeGap;
+    float curTime;
 
     public void spawn()
     {
-        Instantiate(personPrefab, transform);
+        Instantiate(personPrefab, transform.position, transform.rotation);
 
     }
 
@@ -21,7 +21,7 @@ public class SpawnScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        timeGap = 1000;
+        timeGap = 3;
         curTime = 0;
 
     }
@@ -34,6 +34,6 @@ public class SpawnScript : MonoBehaviour {
             curTime = 0;
         }
 
-        curTime++;
+        curTime+=Time.deltaTime;
 	}
 }
