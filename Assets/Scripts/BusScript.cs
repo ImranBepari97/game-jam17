@@ -9,38 +9,56 @@ public class BusScript : MonoBehaviour
     private float speed;
     Vector3 startPlace;
     bool hasWaited;
+    bool isStopped;
 
     // Use this for initialization
     void Start()
     {
+        Debug.Log("start");
         time = 0;
         speed = 3;
         startPlace = transform.position;
         hasWaited = false;
+        isStopped = false;
     }
 
     // Update is called once per frame
     void Update()
-    { 
-        if (transform.position.x < 7 && hasWaited == false)
+    {
+        if (!isStopped)
         {
-            transform.Translate(speedModifier * speed * Time.deltaTime, 0, 0);
-        }
-        if (transform.position.x >= 7)
-        {
-            hasWaited = true;
-            time++;
-        }
-        if (transform.position.x >= 7 && time > 400)
-        {
-            transform.Translate(speedModifier * speed * Time.deltaTime, 0, 0);
-            time++;
-            if (time > 1000)
+            if (transform.position.x < 7 && hasWaited == false)
             {
-                hasWaited = false;
-                time = 0;
-                transform.position = startPlace;
+                transform.Translate(speedModifier * speed * Time.deltaTime, 0, 0);
+            }
+            if (transform.position.x >= 7)
+            {
+                hasWaited = true;
+                time++;
+            }
+            if (transform.position.x >= 7 && time > 400)
+            {
+                transform.Translate(speedModifier * speed * Time.deltaTime, 0, 0);
+                time++;
+                if (time > 1000)
+                {
+                    hasWaited = false;
+                    time = 0;
+                    transform.position = startPlace;
+                }
             }
         }
+    }
+
+    //On entering the bus radius
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("car");
+        isStopped = true;
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        isStopped = false;
     }
 }

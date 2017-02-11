@@ -1,28 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Person : MonoBehaviour {
 
-    [SerializeField]
-    int currentDrunkness;
-    [SerializeField]
-    int minDrunkness;
-    [SerializeField]
-    int maxDrunkness;
-    [SerializeField]
-    int minView;
-    [SerializeField]
-    int maxView;
-    [SerializeField]
-    float baseDrunkChance; //base probability of starting a fight when at minDrunkness
+    [SerializeField] int currentDrunkness;
+    [SerializeField] int minDrunkness;
+    [SerializeField] int maxDrunkness;
+    [SerializeField] int minView;
+    [SerializeField] int maxView;
+    [SerializeField] float baseDrunkChance; //base probability of starting a fight when at minDrunkness
     [SerializeField]
     float probabilityScale;//multiply fight probability by this amount every check
-
+    [SerializeField] int view;
+    Vector3 randomDestination;
     CircleCollider2D fightCollider;
 
-    public int view;
     public Person fighting = null;//who is this person fighting right now?
     public Slider slider;
 
@@ -59,11 +54,34 @@ public class Person : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        addRevolution(5F);
+        randomDestination = new Vector3(Random.Range(0, 5), Random.Range(0, 5));
+        moveTo(randomDestination);
     }
 
     void addRevolution(float num)
     {
         slider.value = slider.value + num;
+
+        if (slider.value == slider.maxValue || slider.value > slider.maxValue)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+    }
+
+    void crossRoad(Transform destination)
+    {
+        bool roadCrossed = false;
+
+        while(!roadCrossed)
+        {
+
+        }
+        
+    }
+
+    void moveTo(Vector3 targetPosition )
+    {
+        Vector3 directionToGo = (targetPosition - transform.position).normalized;
+        transform.Translate(directionToGo * Time.deltaTime * currentDrunkness);
     }
 }

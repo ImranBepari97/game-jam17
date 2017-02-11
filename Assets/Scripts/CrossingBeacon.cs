@@ -15,7 +15,6 @@ public class CrossingBeacon : MonoBehaviour {
     void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
-        Debug.Log(sr);
     }
 
 	// Update is called once per frame
@@ -26,7 +25,6 @@ public class CrossingBeacon : MonoBehaviour {
     //On entering the hitbox radius
     void OnTriggerEnter2D (Collider2D other)
     {
-        Debug.Log(other);
         sr.enabled = true;
     }
 
