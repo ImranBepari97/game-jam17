@@ -15,7 +15,7 @@ public class Person : MonoBehaviour {
     [SerializeField] float speed;
     [SerializeField] float directionChangeIntervalScale;
     [SerializeField] float drunkDirScale;
-    CircleCollider2D fightCollider;
+    FightRadius fightRadius;
     Vector3 drunkDir;//direction change caused by drunkness
     Vector3 beaconPos;//position of crossing beacon
 
@@ -25,7 +25,7 @@ public class Person : MonoBehaviour {
 
     void Awake()
     {
-        fightCollider = GetComponentInChildren<CircleCollider2D>();
+        fightRadius = GetComponentInChildren<FightRadius>();
         beaconPos = FindObjectOfType<CrossingBeacon>().transform.position;
     }
 
@@ -45,7 +45,7 @@ public class Person : MonoBehaviour {
     {
         if (fighting == null)
         {
-            float distChance = 1 - Vector2.Distance(transform.position, other.transform.position) / (fightCollider.radius * transform.localScale.x);
+            float distChance = 1 - Vector2.Distance(transform.position, other.transform.position) / (fightRadius.col.radius * transform.localScale.x);
             float viewChance = (float)Mathf.Abs(view - other.view) / (maxView - minView);
             float drunkChance = baseDrunkChance + (float)currentDrunkness / (maxDrunkness - minDrunkness) * (1 - baseDrunkChance);
             float chance = 1 - Mathf.Pow(1 - distChance * viewChance * drunkChance, Time.fixedDeltaTime);
@@ -86,6 +86,12 @@ public class Person : MonoBehaviour {
     {
         Vector3 directionToGo = (targetPosition - transform.position).normalized;
         transform.Translate(directionToGo * Time.deltaTime * currentDrunkness);
+    }
+
+    public void StopFighting()
+    {
+        fighting = null;
+        fightRadius.sr.enabled = false;
     }
 
     //direction change caused by drunkness
