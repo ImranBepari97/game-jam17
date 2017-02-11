@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BusScript.cs" />
+    <Compile Include="Assets\Scripts\CarScript.cs" />
     <Compile Include="Assets\Scripts\Christian.cs" />
     <Compile Include="Assets\Scripts\CrossingBeacon.cs" />
     <Compile Include="Assets\Scripts\Person.cs" />
