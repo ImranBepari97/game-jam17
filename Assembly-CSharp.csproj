@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\Christian.cs" />
      <Compile Include="Assets\Scripts\CrossingBeacon.cs" />
      <Compile Include="Assets\Scripts\FightRadius.cs" />
+     <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\GameOverScript.cs" />
      <Compile Include="Assets\Scripts\PanelScript.cs" />
      <Compile Include="Assets\Scripts\Person.cs" />
