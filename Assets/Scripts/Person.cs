@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Person : MonoBehaviour {
@@ -15,8 +14,13 @@ public class Person : MonoBehaviour {
     [SerializeField]
     float probabilityScale;//multiply fight probability by this amount every check
     [SerializeField] int view;
-    Vector3 randomDestination;
+    [SerializeField] float speed;
+    [SerializeField] float directionChangeIntervalScale;
+    [SerializeField] float drunkDirScale;
     CircleCollider2D fightCollider;
+    Vector3 drunkDir;//direction change caused by drunkness
+    Vector3 beaconPos;//position of crossing beacon
+    Vector3 target;
 
     public Person fighting = null;//who is this person fighting right now?
     public Slider slider;
@@ -24,6 +28,7 @@ public class Person : MonoBehaviour {
     void Awake()
     {
         fightCollider = GetComponentInChildren<CircleCollider2D>();
+        beaconPos = FindObjectOfType<CrossingBeacon>().transform.position;
     }
 
     // Use this for initialization
@@ -32,6 +37,9 @@ public class Person : MonoBehaviour {
         //sets drunkness and view values in the given range
         currentDrunkness = Random.Range(minDrunkness, maxDrunkness);
         view = Random.Range(minView, maxView);
+
+        target = beaconPos;
+        StartCoroutine(ChangeDirection());
     }
 
     // Calculate the probability of starting a fight with another person.
@@ -54,18 +62,13 @@ public class Person : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        randomDestination = new Vector3(Random.Range(0, 5), Random.Range(0, 5));
-        moveTo(randomDestination);
+        //addRevolution(5F);
+        transform.Translate(((target - transform.position).normalized * speed + drunkDir).normalized * speed * Time.deltaTime);
     }
 
     void addRevolution(float num)
     {
         slider.value = slider.value + num;
-
-        if (slider.value == slider.maxValue || slider.value > slider.maxValue)
-        {
-            SceneManager.LoadScene("GameOver");
-        }
     }
 
     void crossRoad(Transform destination)
@@ -83,5 +86,15 @@ public class Person : MonoBehaviour {
     {
         Vector3 directionToGo = (targetPosition - transform.position).normalized;
         transform.Translate(directionToGo * Time.deltaTime * currentDrunkness);
+    }
+
+    //direction change caused by drunkness
+    IEnumerator ChangeDirection()
+    {
+        while (true)
+        {
+            drunkDir = Random.insideUnitCircle * currentDrunkness * drunkDirScale;
+            yield return new WaitForSeconds((maxDrunkness - currentDrunkness + 1) * directionChangeIntervalScale);
+        }
     }
 }
