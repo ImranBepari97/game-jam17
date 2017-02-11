@@ -15,6 +15,8 @@ public class Person : MonoBehaviour {
     [SerializeField] float speed;
     [SerializeField] float directionChangeIntervalScale;
     [SerializeField] float drunkDirScale;
+    [SerializeField] int maxHealth;
+    [SerializeField] int currentHealth;
     FightRadius fightRadius;
     Vector3 drunkDir;//direction change caused by drunkness
     Vector3 beaconPos;//position of crossing beacon
@@ -37,7 +39,8 @@ public class Person : MonoBehaviour {
         //sets drunkness and view values in the given range
         currentDrunkness = Random.Range(minDrunkness, maxDrunkness);
         view = Random.Range(minView, maxView);
-
+        maxHealth = 1000;
+        currentHealth = 1000;
         target = beaconPos;
         StartCoroutine(ChangeDirection());
     }
@@ -68,6 +71,18 @@ public class Person : MonoBehaviour {
         if (fighting == null)
         {
             transform.Translate(((target - transform.position).normalized * speed + drunkDir).normalized * speed * Time.deltaTime);
+            if (currentHealth < maxHealth)
+            {
+                currentHealth += 1;
+            }
+        } else
+        {
+            currentHealth -= 1;
+        }
+
+        if(currentHealth == 0)
+        {
+            Destroy(gameObject);
         }
     }
 
