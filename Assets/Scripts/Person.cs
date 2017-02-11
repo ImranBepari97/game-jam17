@@ -106,4 +106,13 @@ public class Person : MonoBehaviour {
             yield return new WaitForSeconds((maxDrunkness - currentDrunkness + 1) * directionChangeIntervalScale);
         }
     }
+
+    //On entering the person radius
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+            if (collision.gameObject.tag == "Person")
+            {
+
+            }
+    }
 }
