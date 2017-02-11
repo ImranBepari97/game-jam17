@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayButtonScript : MonoBehaviour {
 
@@ -13,4 +14,15 @@ public class PlayButtonScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void playGame()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
+    void quitGame()
+    {
+        Debug.Log("Quit Game");
+        Application.Quit();
+    }
 }
