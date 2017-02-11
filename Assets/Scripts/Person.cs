@@ -16,6 +16,9 @@ public class Person : MonoBehaviour {
     [SerializeField] float directionChangeIntervalScale;
     [SerializeField] float drunkDirScale;
     [SerializeField] RuntimeAnimatorController[] personAnimatorControllers;// animator controllers for people of different views
+    [SerializeField] int maxHealth;
+    [SerializeField] int currentHealth;
+    
     FightRadius fightRadius;
     Vector3 drunkDir;//direction change caused by drunkness
     Vector3 beaconPos;//position of crossing beacon
@@ -42,6 +45,8 @@ public class Person : MonoBehaviour {
         view = Random.Range(minView, maxView);
         anim.runtimeAnimatorController = personAnimatorControllers[view - minView];
 
+        maxHealth = 1000;
+        currentHealth = 1000;
         target = beaconPos;
         StartCoroutine(ChangeDirection());
     }
@@ -72,6 +77,18 @@ public class Person : MonoBehaviour {
         if (fighting == null)
         {
             transform.Translate(((target - transform.position).normalized * speed + drunkDir).normalized * speed * Time.deltaTime);
+            if (currentHealth < maxHealth)
+            {
+                currentHealth += 1;
+            }
+        } else
+        {
+            currentHealth -= 1;
+        }
+
+        if(currentHealth == 0)
+        {
+            Destroy(gameObject);
         }
     }
 

@@ -59,6 +59,16 @@ public class BusScript : MonoBehaviour
             {
                 Debug.Log("Collision");
                 Destroy(collision.gameObject);
+                
+            }
+        }
+
+        if (speed == 0)
+        {
+            if (collision.gameObject.tag == "Person")
+            {
+                Debug.Log("Collision");
+                Destroy(collision.gameObject);
             }
         }
     }
