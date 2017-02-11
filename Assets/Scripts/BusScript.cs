@@ -53,9 +53,7 @@ public class BusScript : MonoBehaviour
     //On entering the bus radius
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("car");
-        isStopped = true;
-        if (speed == 0)
+        if (speed > 0)
         {
             if (collision.gameObject.tag == "Person")
             {
