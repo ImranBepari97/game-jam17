@@ -15,7 +15,6 @@ public class BusScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Debug.Log("start");
         time = 0;
         speed = 3;
         startPlace = transform.position;
@@ -59,16 +58,18 @@ public class BusScript : MonoBehaviour
     //On entering the bus radius
     void OnCollisionEnter2D(Collision2D collision)
     {
-
-        
-            if (collision.gameObject.tag == "Person")
+        if (collision.gameObject.tag == "Person")
+        {
+            if (isStopped)
             {
                 Destroy(collision.gameObject);
-                if (isStopped)
-                {
-                     gc.score += 1;
-                }
+                gc.score += 1;
             }
+            else
+            {
+                collision.gameObject.GetComponent<Person>().Die();
+            }
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)

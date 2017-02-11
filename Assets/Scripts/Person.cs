@@ -19,8 +19,9 @@ public class Person : MonoBehaviour {
     [SerializeField] int maxHealth;
     [SerializeField] int currentHealth;
     [SerializeField] int fightCooldown;
+    [SerializeField] AudioClip deathClip;
+
     bool canFight;
-    
     FightRadius fightRadius;
     Vector3 drunkDir;//direction change caused by drunkness
     Vector3 beaconPos;//position of crossing beacon
@@ -90,7 +91,7 @@ public class Person : MonoBehaviour {
 
         if(currentHealth == 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 
@@ -154,5 +155,11 @@ public class Person : MonoBehaviour {
     {
         yield return new WaitForSeconds(fightCooldown);
         canFight = true;
+    }
+
+    public void Die()
+    {
+        AudioSource.PlayClipAtPoint(deathClip, Camera.main.transform.position);
+        Destroy(gameObject);
     }
 }

@@ -6,14 +6,11 @@ public class CarScript : MonoBehaviour {
     int time;
     public float speedModifier;
     public float speed;
-    Vector3 startPlace;
-    
 
     // Use this for initialization
     void Start () {
         time = 0;
         speed = 3;
-        startPlace = transform.position;
     }
 	
 	// Update is called once per frame
@@ -44,7 +41,7 @@ public class CarScript : MonoBehaviour {
 
         if (collision.gameObject.tag == "Person")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<Person>().Die();
         }
     }
 
