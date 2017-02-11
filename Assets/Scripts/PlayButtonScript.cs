@@ -30,4 +30,9 @@ public class PlayButtonScript : MonoBehaviour {
     {
         SceneManager.LoadScene("Instructions");
     }
+
+    void goBack()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
