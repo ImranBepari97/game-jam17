@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\GameOverScript.cs" />
      <Compile Include="Assets\Scripts\PanelScript.cs" />
      <Compile Include="Assets\Scripts\Person.cs" />
+     <Compile Include="Assets\Scripts\PlayButtonScript.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\ScoreScript.cs" />
      <Compile Include="Assets\Scripts\SpawnScript.cs" />
