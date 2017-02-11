@@ -49,6 +49,9 @@ public class Person : MonoBehaviour {
             float viewChance = (float)Mathf.Abs(view - other.view) / (maxView - minView);
             float drunkChance = baseDrunkChance + (float)currentDrunkness / (maxDrunkness - minDrunkness) * (1 - baseDrunkChance);
             float chance = 1 - Mathf.Pow(1 - distChance * viewChance * drunkChance, Time.fixedDeltaTime);
+
+
+
             if (Random.value < chance)
             {
                 fighting = other;
