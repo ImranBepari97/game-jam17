@@ -25,4 +25,9 @@ public class PlayButtonScript : MonoBehaviour {
         Debug.Log("Quit Game");
         Application.Quit();
     }
+
+    void showInstructions()
+    {
+        SceneManager.LoadScene("Instructions");
+    }
 }
