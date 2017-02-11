@@ -20,8 +20,8 @@ public class Person : MonoBehaviour {
     CircleCollider2D fightCollider;
     Vector3 drunkDir;//direction change caused by drunkness
     Vector3 beaconPos;//position of crossing beacon
-    Vector3 target;
 
+    public Vector3 target;//movement destination
     public Person fighting = null;//who is this person fighting right now?
     public Slider slider;
 
