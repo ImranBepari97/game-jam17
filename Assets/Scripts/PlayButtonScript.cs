@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayButtonScript : MonoBehaviour {
 
@@ -13,4 +14,10 @@ public class PlayButtonScript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void playGame()
+    {
+        Debug.Log("Hi");
+        SceneManager.LoadScene("Main");
+    }
 }
