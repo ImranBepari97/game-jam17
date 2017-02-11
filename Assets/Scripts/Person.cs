@@ -43,8 +43,8 @@ public class Person : MonoBehaviour {
     void Start ()
     {
         //sets drunkness and view values in the given range
-        currentDrunkness = Random.Range(minDrunkness, maxDrunkness);
-        view = Random.Range(minView, maxView);
+        currentDrunkness = Random.Range(minDrunkness, maxDrunkness + 1);
+        view = Random.Range(minView, maxView + 1);
         anim.runtimeAnimatorController = personAnimatorControllers[view - minView];
         canFight = true;
         maxHealth = 1000;
