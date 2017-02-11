@@ -1,9 +1,24 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: be8221b8fd08c9d4a93047aa9b701edd
 timeCreated: 1486834977
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
+=======
+<<<<<<< HEAD
+guid: 13276ba4bf5ade64ca59ae27f5f1f01b
+timeCreated: 1486834690
+=======
+guid: 0bc4269e81cbb894aaaa8b602fa749fe
+timeCreated: 1486835597
+>>>>>>> d0eeea644067fa02d9d01d8756118b7d21a59013
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: fight_ss_2x1_0
+    21300002: fight_ss_2x1_1
+>>>>>>> 6b19d7dc147a810afabf84fcf87b51f5d12f0cec
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -34,7 +49,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< HEAD
   spriteMode: 1
+=======
+  spriteMode: 2
+>>>>>>> 6b19d7dc147a810afabf84fcf87b51f5d12f0cec
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -58,9 +77,49 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+<<<<<<< HEAD
   spriteSheet:
     serializedVersion: 2
     sprites: []
+=======
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fight_ss_2x1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: fight_ss_2x1_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+>>>>>>> 6b19d7dc147a810afabf84fcf87b51f5d12f0cec
     outline: []
   spritePackingTag: 
   userData: 

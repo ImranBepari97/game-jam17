@@ -18,6 +18,7 @@ public class Person : MonoBehaviour {
     FightRadius fightRadius;
     Vector3 drunkDir;//direction change caused by drunkness
     Vector3 beaconPos;//position of crossing beacon
+    Animator anim;
 
     public Vector3 target;//movement destination
     public Person fighting = null;//who is this person fighting right now?
@@ -25,6 +26,7 @@ public class Person : MonoBehaviour {
 
     void Awake()
     {
+        anim = GetComponent<Animator>();
         fightRadius = GetComponentInChildren<FightRadius>();
         beaconPos = FindObjectOfType<CrossingBeacon>().transform.position;
     }
@@ -54,8 +56,8 @@ public class Person : MonoBehaviour {
 
             if (Random.value < chance)
             {
-                fighting = other;
-                other.fighting = this;
+                StartFighting(other);
+                other.StartFighting(this);
             }
         }
     }
@@ -91,10 +93,17 @@ public class Person : MonoBehaviour {
         transform.Translate(directionToGo * Time.deltaTime * currentDrunkness);
     }
 
+    public void StartFighting(Person other)
+    {
+        fighting = other;
+        anim.SetBool("fighting", true);
+    }
+
     public void StopFighting()
     {
         fighting = null;
         fightRadius.sr.enabled = false;
+        anim.SetBool("fighting", false);
     }
 
     //direction change caused by drunkness
@@ -105,5 +114,14 @@ public class Person : MonoBehaviour {
             drunkDir = Random.insideUnitCircle * currentDrunkness * drunkDirScale;
             yield return new WaitForSeconds((maxDrunkness - currentDrunkness + 1) * directionChangeIntervalScale);
         }
+    }
+
+    //On entering the person radius
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+            if (collision.gameObject.tag == "Person")
+            {
+
+            }
     }
 }
