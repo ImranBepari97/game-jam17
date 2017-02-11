@@ -15,7 +15,6 @@ public class CrossingBeacon : MonoBehaviour {
     void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
-        Debug.Log(sr);
     }
 
 	// Update is called once per frame
