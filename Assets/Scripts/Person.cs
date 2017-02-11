@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Person : MonoBehaviour {
@@ -53,7 +54,6 @@ public class Person : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        addRevolution(5F);
         randomDestination = new Vector3(Random.Range(0, 5), Random.Range(0, 5));
         moveTo(randomDestination);
     }
@@ -61,6 +61,11 @@ public class Person : MonoBehaviour {
     void addRevolution(float num)
     {
         slider.value = slider.value + num;
+
+        if (slider.value == slider.maxValue || slider.value > slider.maxValue)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     void crossRoad(Transform destination)
