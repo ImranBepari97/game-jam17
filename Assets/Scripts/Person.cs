@@ -17,6 +17,7 @@ public class Person : MonoBehaviour {
     [SerializeField] float drunkDirScale;
     [SerializeField] int maxHealth;
     [SerializeField] int currentHealth;
+    
     FightRadius fightRadius;
     Vector3 drunkDir;//direction change caused by drunkness
     Vector3 beaconPos;//position of crossing beacon
