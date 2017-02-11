@@ -25,7 +25,6 @@ public class Person : MonoBehaviour {
     Vector3 drunkDir;//direction change caused by drunkness
     Vector3 beaconPos;//position of crossing beacon
     Animator anim;
-    SpriteRenderer sr;
 
     public Vector3 target;//movement destination
     public Person fighting = null;//who is this person fighting right now?
@@ -34,7 +33,6 @@ public class Person : MonoBehaviour {
     void Awake()
     {
         anim = GetComponent<Animator>();
-        sr = GetComponent<SpriteRenderer>();
         fightRadius = GetComponentInChildren<FightRadius>();
         beaconPos = FindObjectOfType<CrossingBeacon>().transform.position;
     }
@@ -79,6 +77,7 @@ public class Person : MonoBehaviour {
     {
         if (fighting == null)
         {
+            anim.SetBool("fighting", false);
             transform.Translate(((target - transform.position).normalized * speed + drunkDir).normalized * speed * Time.deltaTime);
             if (currentHealth < maxHealth)
             {

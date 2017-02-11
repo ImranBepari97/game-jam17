@@ -63,7 +63,6 @@ public class BusScript : MonoBehaviour
         
             if (collision.gameObject.tag == "Person")
             {
-                Debug.Log("Collision");
                 Destroy(collision.gameObject);
                 if (isStopped)
                 {
