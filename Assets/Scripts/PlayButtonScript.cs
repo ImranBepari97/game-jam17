@@ -35,4 +35,9 @@ public class PlayButtonScript : MonoBehaviour {
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    void handsFree()
+    {
+        SceneManager.LoadScene("HandsFreeInstructions");
+    }
 }

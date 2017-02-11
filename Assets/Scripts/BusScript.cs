@@ -10,6 +10,7 @@ public class BusScript : MonoBehaviour
     Vector3 startPlace;
     bool hasWaited;
     bool isStopped;
+    GameController gc;
 
     // Use this for initialization
     void Start()
@@ -20,6 +21,11 @@ public class BusScript : MonoBehaviour
         startPlace = transform.position;
         hasWaited = false;
         isStopped = false;
+    }
+    
+    void Awake()
+    {
+        gc = FindObjectOfType<GameController>();
     }
 
     // Update is called once per frame
@@ -53,24 +59,17 @@ public class BusScript : MonoBehaviour
     //On entering the bus radius
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (speed > 0)
-        {
-            if (collision.gameObject.tag == "Person")
-            {
-                Debug.Log("Collision");
-                Destroy(collision.gameObject);
-                
-            }
-        }
 
-        if (speed == 0)
-        {
+        
             if (collision.gameObject.tag == "Person")
             {
                 Debug.Log("Collision");
                 Destroy(collision.gameObject);
+                if (isStopped)
+                {
+                     gc.score += 1;
+                }
             }
-        }
     }
 
     void OnTriggerExit2D(Collider2D other)

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour {
 
     [SerializeField]
-    int score;
+    public int score;
     
 
 
@@ -18,7 +18,6 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        score++;
 	}
 
     void endGame()

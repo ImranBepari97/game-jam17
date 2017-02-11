@@ -44,6 +44,7 @@ public class CarScript : MonoBehaviour {
 
         if (collision.gameObject.tag == "Person")
         {
+
             Destroy(collision.gameObject);
         }
     }
