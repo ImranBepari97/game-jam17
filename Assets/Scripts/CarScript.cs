@@ -5,7 +5,7 @@ using UnityEngine;
 public class CarScript : MonoBehaviour {
     int time;
     public float speedModifier;
-    private float speed;
+    public float speed;
     Vector3 startPlace;
 
     // Use this for initialization
@@ -23,7 +23,7 @@ public class CarScript : MonoBehaviour {
         if (time > 1000)
         {
             time = 0;
-            transform.position = startPlace;
+            Destroy(gameObject);
         }
         time++;
 
