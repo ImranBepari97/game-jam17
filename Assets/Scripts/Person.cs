@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Person : MonoBehaviour {
-
 
     [SerializeField]
     int currentDrunkness;
@@ -24,22 +24,23 @@ public class Person : MonoBehaviour {
 
     public int view;
     public Person fighting = null;//who is this person fighting right now?
+    public Slider slider;
 
     void Awake()
     {
         fightCollider = GetComponentInChildren<CircleCollider2D>();
     }
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         //sets drunkness and view values in the given range
         currentDrunkness = Random.Range(minDrunkness, maxDrunkness);
         view = Random.Range(minView, maxView);
-	}
+    }
 
     // Calculate the probability of starting a fight with another person.
-	public void CheckStartFight(Person other)
+    public void CheckStartFight(Person other)
     {
         if (fighting == null)
         {
@@ -53,5 +54,15 @@ public class Person : MonoBehaviour {
                 other.fighting = this;
             }
         }
+
+    // Update is called once per frame
+    void Update()
+    {
+        addRevolution(5F);
+    }
+
+    void addRevolution(float num)
+    {
+        slider.value = slider.value + num;
     }
 }

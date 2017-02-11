@@ -26,9 +26,13 @@ Library/metadata/34/34e82c1d16403004bb8b51d65c1eb6a3.info
 Library/metadata/35/35045481c6d7e1147ba07305c962b4a0
 Library/metadata/35/35045481c6d7e1147ba07305c962b4a0.info
 Library/metadata/48/4892d079ff485fd4386eb772ff3509f1
-Library/
-Temp/
+Library/*
+Temp/*
 .vs/game-jam17/v14/.suo
 game-jam17.csproj
 game-jam17.sln
 game-jam17.userprefs
+
+.vs/gamejam17/v14/.suo
+
+gamejam17.csproj
