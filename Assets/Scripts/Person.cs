@@ -12,6 +12,7 @@ public class Person : MonoBehaviour {
     [SerializeField] int minView;
     [SerializeField] int maxView;
     [SerializeField] int view;
+    Vector3 randomDestination;
     public Slider slider;
     
 
@@ -27,6 +28,8 @@ public class Person : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         addRevolution(5F);
+        randomDestination = new Vector3(Random.Range(0, 5), Random.Range(0, 5));
+        moveTo(randomDestination);
     }
 
     void addRevolution(float num)
@@ -43,5 +46,11 @@ public class Person : MonoBehaviour {
 
         }
         
+    }
+
+    void moveTo(Vector3 targetPosition )
+    {
+        Vector3 directionToGo = (targetPosition - transform.position).normalized;
+        transform.Translate(directionToGo * Time.deltaTime * currentDrunkness);
     }
 }

@@ -26,7 +26,6 @@ public class CrossingBeacon : MonoBehaviour {
     //On entering the hitbox radius
     void OnTriggerEnter2D (Collider2D other)
     {
-        Debug.Log(other);
         sr.enabled = true;
     }
 
