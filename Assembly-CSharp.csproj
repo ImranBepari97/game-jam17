@@ -53,6 +53,8 @@
      <Compile Include="Assets\Scripts\Person.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\personBehaviour.cs" />
+     <Compile Include="Assets\Scripts\personController.cs" />
+     <Compile Include="Assets\Scripts\personSpawn.cs" />
      <None Include="Assets\Sprites\sprites.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
