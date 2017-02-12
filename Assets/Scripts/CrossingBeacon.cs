@@ -22,8 +22,11 @@ public class CrossingBeacon : MonoBehaviour {
             // player pressed F; change people's target
             foreach (Person person in peopleOnBeacon)
             {
-                person.target = busStop.position;
-                person.gameObject.layer = LayerMask.NameToLayer("Default");//disable person collision with street
+                if (person != null)
+                {
+                    person.target = busStop.position;
+                    person.gameObject.layer = LayerMask.NameToLayer("Default");//disable person collision with street
+                }
             }
             peopleOnBeacon.Clear();
         }
