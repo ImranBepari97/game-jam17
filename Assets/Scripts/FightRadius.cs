@@ -8,6 +8,7 @@ public class FightRadius : MonoBehaviour {
     Person person;// the person this radius belongs to
     float fHeldTime = 0f;// time player has held F
     bool beingStopped = false;// is the player stopping a fight here now?
+    PlayerController player;
 
     public SpriteRenderer sr;//renderer for key prompt sprite
     public CircleCollider2D col;//this object's collider
@@ -17,6 +18,7 @@ public class FightRadius : MonoBehaviour {
         person = GetComponentInParent<Person>();
         sr = GetComponentInChildren<SpriteRenderer>();
         col = GetComponent<CircleCollider2D>();
+        player = FindObjectOfType<PlayerController>();
     }
 
     void Update()
@@ -26,6 +28,7 @@ public class FightRadius : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.F))
             {
                 beingStopped = true;
+                player.PlayStopSound();
                 fHeldTime = 0f;// reset timer
             }
             if (beingStopped)

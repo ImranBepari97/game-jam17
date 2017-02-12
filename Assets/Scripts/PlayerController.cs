@@ -4,27 +4,30 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public float speed;
-    public AudioSource stopSound;
+    [SerializeField] AudioSource stopSound;
+    [SerializeField] AudioSource goSound;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
+    public float speed;
 	
 	// Update is called once per frame
 	void Update () {
         transform.Translate(Input.GetAxis("Horizontal") * speed * Time.deltaTime, 0, 0);
         transform.Translate(0, Input.GetAxis("Vertical") * speed * Time.deltaTime, 0);
+    }
 
-        if (Input.GetKeyDown(KeyCode.F))
+    public void PlayStopSound()
+    {
+        if (!stopSound.isPlaying)
         {
             stopSound.Play();
         }
     }
 
-    void awake()
+    public void PlayGoSound()
     {
-       stopSound = GetComponent<AudioSource>();
+        if (!goSound.isPlaying)
+        {
+            goSound.Play();
+        }
     }
 }
