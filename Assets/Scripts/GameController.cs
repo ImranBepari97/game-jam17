@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour {
     [SerializeField]
     public float revolutionGain;
     [SerializeField]
+    public float waveGain;
+    [SerializeField]
     Text scoreText;
     [SerializeField]
     Text waveText;
@@ -31,29 +33,31 @@ public class GameController : MonoBehaviour {
         score = 0;
         revolution = 0;
         StartCoroutine(addRevolution());
+        StartCoroutine(updateWave());
         revolutionBar.maxValue = maxRevolution;
         revolutionBar.value = revolution;
 	}
 	
-    void updateWave()
-    {
-        //updatewave method
-        if (score >= wave * 5)
-        {
-            wave++;
-        }
-    }
+  
 
 	// Update is called once per frame
 	void Update () {
         revolutionBar.value = revolution;
         scoreText.text = "Score: " + score;
-        waveText.text = "Wave: " + score;
+        waveText.text = "Wave: " + wave;
         if(revolution >= maxRevolution)
         {
             endGame();
         }
 	}
+
+    void addWave()
+    {
+        if(score >= wave * 5)
+        {
+            wave++;
+        }
+    }
 
     void endGame()
     {
@@ -66,6 +70,15 @@ public class GameController : MonoBehaviour {
         {
             yield return new WaitForSeconds(revolutionGain);
             revolution++;
+        }
+    }
+
+    IEnumerator updateWave()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(waveGain);
+            addWave();
         }
     }
 }
