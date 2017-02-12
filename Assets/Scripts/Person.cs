@@ -16,9 +16,9 @@ public class Person : MonoBehaviour {
     [SerializeField] float directionChangeIntervalScale;
     [SerializeField] float drunkDirScale;
     [SerializeField] RuntimeAnimatorController[] personAnimatorControllers;// animator controllers for people of different views
-    [SerializeField] int maxHealth = 1000;
+    [SerializeField] int maxHealth;
     [SerializeField] int currentHealth;
-    [SerializeField] int fightCooldown = 5;
+    [SerializeField] int fightCooldown;
     [SerializeField] AudioClip deathClip;
 
     FightRadius fightRadius;
