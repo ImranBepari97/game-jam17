@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
 
     [SerializeField]
     public int score;
+    public int wave;
 
     [SerializeField]
     public int revolution;
@@ -17,12 +18,14 @@ public class GameController : MonoBehaviour {
     public float revolutionGain;
     [SerializeField]
     Text scoreText;
+    Text waveText;
 
     [SerializeField]
     Slider revolutionBar;
 
 	// Use this for initialization
 	void Start () {
+        wave = 0;
         score = 0;
         revolution = 0;
         StartCoroutine(addRevolution());
@@ -30,6 +33,11 @@ public class GameController : MonoBehaviour {
         revolutionBar.value = revolution;
 	}
 	
+    void updateWave()
+    {
+        //updatewave method
+    }
+
 	// Update is called once per frame
 	void Update () {
         revolutionBar.value = revolution;
