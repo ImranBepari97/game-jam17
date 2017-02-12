@@ -25,6 +25,7 @@ public class Person : MonoBehaviour {
     Vector3 drunkDir;//direction change caused by drunkness
     Vector3 beaconPos;//position of crossing beacon
     Animator anim;
+    bool coolingDown = false;
 
     public Vector3 target;//movement destination
     public Person fighting = null;//who is this person fighting right now?
@@ -45,10 +46,7 @@ public class Person : MonoBehaviour {
         currentDrunkness = Random.Range(minDrunkness, maxDrunkness + 1);
         view = Random.Range(minView, maxView + 1);
         anim.runtimeAnimatorController = personAnimatorControllers[view - minView];
-        canFight = true;
-        maxHealth = 1000;
-        currentHealth = 1000;
-        fightCooldown = 5;
+        currentHealth = maxHealth;
         target = beaconPos;
         StartCoroutine(ChangeDirection());
     }
@@ -56,7 +54,7 @@ public class Person : MonoBehaviour {
     // Calculate the probability of starting a fight with another person.
     public void CheckStartFight(Person other)
     {
-        if (fighting == null && canFight && other.fighting == null)
+        if (fighting == null && canFight && !coolingDown && other.fighting == null)
         {
             float distChance = 1 - Vector2.Distance(transform.position, other.transform.position) / (fightRadius.col.radius * transform.localScale.x);
             float viewChance = (float)Mathf.Abs(view - other.view) / (maxView - minView);
@@ -126,7 +124,7 @@ public class Person : MonoBehaviour {
         fighting = null;
         fightRadius.sr.enabled = false;
         anim.SetBool("fighting", false);
-        canFight = false;
+        coolingDown = true;
         StartCoroutine(FightCooldown());
     }
 
@@ -152,7 +150,7 @@ public class Person : MonoBehaviour {
     IEnumerator FightCooldown()
     {
         yield return new WaitForSeconds(fightCooldown);
-        canFight = true;
+        coolingDown = false;
     }
 
     public void Die()
