@@ -56,14 +56,12 @@ public class Person : MonoBehaviour {
     // Calculate the probability of starting a fight with another person.
     public void CheckStartFight(Person other)
     {
-        if (fighting == null && canFight)
+        if (fighting == null && canFight && other.fighting == null)
         {
             float distChance = 1 - Vector2.Distance(transform.position, other.transform.position) / (fightRadius.col.radius * transform.localScale.x);
             float viewChance = (float)Mathf.Abs(view - other.view) / (maxView - minView);
             float drunkChance = baseDrunkChance + (float)currentDrunkness / (maxDrunkness - minDrunkness) * (1 - baseDrunkChance);
             float chance = 1 - Mathf.Pow(1 - distChance * viewChance * drunkChance, Time.fixedDeltaTime);
-
-
 
             if (Random.value < chance)
             {
