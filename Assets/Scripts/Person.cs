@@ -21,7 +21,6 @@ public class Person : MonoBehaviour {
     [SerializeField] int fightCooldown;
     [SerializeField] AudioClip deathClip;
 
-    bool canFight;
     FightRadius fightRadius;
     Vector3 drunkDir;//direction change caused by drunkness
     Vector3 beaconPos;//position of crossing beacon
@@ -30,6 +29,7 @@ public class Person : MonoBehaviour {
     public Vector3 target;//movement destination
     public Person fighting = null;//who is this person fighting right now?
     public Slider slider;
+    public bool canFight;
 
     void Awake()
     {
