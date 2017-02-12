@@ -5,9 +5,11 @@ using UnityEngine;
 public class BusStop : MonoBehaviour {
     List<Person> peopleAtStop; //people who have arrived at this stop
     GameController gc;
+    AudioSource dingSound;
 
     void Awake()
     {
+        dingSound = GetComponent<AudioSource>();
         peopleAtStop = new List<Person>();
         gc = FindObjectOfType<GameController>();
     }
@@ -26,6 +28,7 @@ public class BusStop : MonoBehaviour {
     // put one person on the bus
     public void PutPersonOnBus(GameObject person)
     {
+        dingSound.Play();
         Destroy(person);
         gc.score += 1;
     }
