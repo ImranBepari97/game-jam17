@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour {
     Text scoreText;
     Text waveText;
 
+    [SerializeField]
+    Slider revolutionBar;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +29,8 @@ public class GameController : MonoBehaviour {
         score = 0;
         revolution = 0;
         StartCoroutine(addRevolution());
+        revolutionBar.maxValue = maxRevolution;
+        revolutionBar.value = revolution;
 	}
 	
     void updateWave()
@@ -36,10 +40,14 @@ public class GameController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        
+        revolutionBar.value = revolution;
         scoreText.text = "Score: " + score;
-        waveText.text = "Wave: " + wave;
-    }
+
+        if(revolution >= maxRevolution)
+        {
+            endGame();
+        }
+	}
 
     void endGame()
     {

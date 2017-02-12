@@ -7,12 +7,11 @@ public class BusScript : MonoBehaviour
     [SerializeField] float waitTime;// time to wait at stop
     [SerializeField] float leaveTime;// time from leaving bus stop until end of journey
     [SerializeField] float waitPos;// X coordinate at which to stop
-    int time;
     private float speed;
     Vector3 startPlace;
     bool isStopped = false;
     bool hasWaited = false;
-    GameController gc;
+    BusStop busStop;
     float elapsedTime = 0f;// time since start of last phase of journey
 
     public float speedModifier;
@@ -20,14 +19,13 @@ public class BusScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        time = 0;
         speed = 3;
         startPlace = transform.position;
     }
     
     void Awake()
     {
-        gc = FindObjectOfType<GameController>();
+        busStop = FindObjectOfType<BusStop>();
     }
 
     // Update is called once per frame
@@ -53,6 +51,7 @@ public class BusScript : MonoBehaviour
                 }
                 else
                 {
+                    busStop.PutPeopleOnBus();
                     isStopped = true;
                 }
             }
@@ -78,11 +77,12 @@ public class BusScript : MonoBehaviour
         {
             if (isStopped)
             {
-                Destroy(collision.gameObject);
-                gc.score += 1;
+                // bus is stopped; put the person on the bus
+                busStop.PutPersonOnBus(collision.gameObject);
             }
             else
             {
+                // bus is moving; kill the person
                 collision.gameObject.GetComponent<Person>().Die();
             }
         }
