@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BirdScript.cs" />
      <Compile Include="Assets\Scripts\BusScript.cs" />
+     <Compile Include="Assets\Scripts\BusStop.cs" />
      <Compile Include="Assets\Scripts\CarScript.cs" />
      <Compile Include="Assets\Scripts\Christian.cs" />
      <Compile Include="Assets\Scripts\CrossingBeacon.cs" />
