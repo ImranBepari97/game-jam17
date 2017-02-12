@@ -26,12 +26,19 @@ public class GameController : MonoBehaviour {
         score = 0;
         revolution = 0;
         StartCoroutine(addRevolution());
+        revolutionBar.maxValue = maxRevolution;
+        revolutionBar.value = revolution;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        revolutionBar.value = revolution / maxRevolution;
+        revolutionBar.value = revolution;
         scoreText.text = "Score: " + score;
+
+        if(revolution >= maxRevolution)
+        {
+            endGame();
+        }
 	}
 
     void endGame()
