@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class BusScript : MonoBehaviour
 {
+    [SerializeField] float waitTime;// time to wait at stop
+    [SerializeField] float leaveTime;// time from leaving bus stop until end of journey
+    [SerializeField] float waitPos;// X coordinate at which to stop
     int time;
-    public float speedModifier;
     private float speed;
     Vector3 startPlace;
-    bool hasWaited;
-    bool isStopped;
+    bool isStopped = false;
+    bool hasWaited = false;
     GameController gc;
+    float elapsedTime = 0f;// time since start of last phase of journey
+
+    public float speedModifier;
 
     // Use this for initialization
     void Start()
     {
-        Debug.Log("start");
         time = 0;
         speed = 3;
         startPlace = transform.position;
-        hasWaited = false;
-        isStopped = false;
     }
     
     void Awake()
@@ -31,26 +33,39 @@ public class BusScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isStopped)
+        if (transform.position.x < waitPos)
         {
-            if (transform.position.x < 7 && hasWaited == false)
+            // not yet arrived at bus stop
+            transform.Translate(speedModifier * speed * Time.deltaTime, 0, 0);
+        }
+        else
+        {
+            elapsedTime += Time.deltaTime;
+            if (!hasWaited)
             {
-                transform.Translate(speedModifier * speed * Time.deltaTime, 0, 0);
-            }
-            if (transform.position.x >= 7)
-            {
-                hasWaited = true;
-                time++;
-            }
-            if (transform.position.x >= 7 && time > 400)
-            {
-                transform.Translate(speedModifier * speed * Time.deltaTime, 0, 0);
-                time++;
-                if (time > 1000)
+                // waiting at bus stop
+                if (elapsedTime >= waitTime)
                 {
-                    hasWaited = false;
-                    time = 0;
+                    // stop waiting
+                    elapsedTime = 0f;
+                    isStopped = false;
+                    hasWaited = true;
+                }
+                else
+                {
+                    isStopped = true;
+                }
+            }
+            else
+            {
+                // leaving
+                transform.Translate(speedModifier * speed * Time.deltaTime, 0, 0);
+                if (elapsedTime >= leaveTime)
+                {
+                    // return to start
+                    elapsedTime = 0f;
                     transform.position = startPlace;
+                    hasWaited = false;
                 }
             }
         }
@@ -59,21 +74,17 @@ public class BusScript : MonoBehaviour
     //On entering the bus radius
     void OnCollisionEnter2D(Collision2D collision)
     {
-
-        
-            if (collision.gameObject.tag == "Person")
+        if (collision.gameObject.tag == "Person")
+        {
+            if (isStopped)
             {
-                Debug.Log("Collision");
                 Destroy(collision.gameObject);
-                if (isStopped)
-                {
-                     gc.score += 1;
-                }
+                gc.score += 1;
             }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        isStopped = false;
+            else
+            {
+                collision.gameObject.GetComponent<Person>().Die();
+            }
+        }
     }
 }
