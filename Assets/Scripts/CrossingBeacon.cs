@@ -7,18 +7,21 @@ public class CrossingBeacon : MonoBehaviour {
     [SerializeField] Transform busStop;
 
     SpriteRenderer sr;
+    PlayerController player;
     List<Person> peopleOnBeacon; //people who have arrived at this beacon
 
     void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
         peopleOnBeacon = new List<Person>();
+        player = FindObjectOfType<PlayerController>();
     }
 
 	// Update is called once per frame
 	void Update () {
 		if (sr.enabled && Input.GetKeyDown(KeyCode.F))
         {
+            player.PlayGoSound();
             // player pressed F; change people's target
             foreach (Person person in peopleOnBeacon)
             {
