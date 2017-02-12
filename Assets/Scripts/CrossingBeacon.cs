@@ -25,6 +25,7 @@ public class CrossingBeacon : MonoBehaviour {
                 if (person != null)
                 {
                     person.target = busStop.position;
+                    person.canFight = false;
                     person.gameObject.layer = LayerMask.NameToLayer("Default");//disable person collision with street
                 }
             }
