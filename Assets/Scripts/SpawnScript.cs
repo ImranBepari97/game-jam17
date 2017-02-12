@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnScript : MonoBehaviour {
+    [SerializeField]
+    public int maxObjects;
 
     [SerializeField]
     GameObject personPrefab;
@@ -13,14 +15,30 @@ public class SpawnScript : MonoBehaviour {
 
     public void spawn()
     {
-        Instantiate(personPrefab, transform.position, transform.rotation);
+        if (checkObjects() == true) {
+            Instantiate(personPrefab, transform.position, transform.rotation);
+        }
+        
 
     }
 
-   
+   public bool checkObjects( )
+    {
+
+        GameObject[] people = GameObject.FindGameObjectsWithTag("Person");
+        int numberOfNPCS = people.Length;
+
+        if (people.Length < maxObjects){
+
+            return true;
+        } else{
+            return false;
+        }
+    }
 
     // Use this for initialization
     void Start () {
+        maxObjects = 15; //default value on start
         timeGap = 3;
         curTime = 0;
 
