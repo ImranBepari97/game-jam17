@@ -21,24 +21,12 @@ public class Christian : MonoBehaviour {
         transform.Translate(speedModifier * speed * Time.deltaTime, 0, 0);
 
 
-        if (time > 1000)
+        if (time > 4000)
         {
             time = 0;
             transform.position = startPlace;
         }
         time++;
-        //int move = Random.Range(1, 100);
-        //if (move < 15)
-        //{
-        //  if (Random.Range(-1, 1) < 0)
-        //{
-        //  transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
-        //}
-        //else
-        //{
-        //  transform.Translate(1 * speed * Time.deltaTime, 0, 0);
-        //}
-        //}
 
     }
 }
