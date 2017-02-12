@@ -21,6 +21,7 @@ public class Person : MonoBehaviour {
     [SerializeField] int fightCooldown;
     [SerializeField] AudioClip deathClip;
 
+    SpriteRenderer sr;
     FightRadius fightRadius;
     Vector3 drunkDir;//direction change caused by drunkness
     Vector3 beaconPos;//position of crossing beacon
@@ -34,6 +35,7 @@ public class Person : MonoBehaviour {
 
     void Awake()
     {
+        sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         fightRadius = GetComponentInChildren<FightRadius>();
         beaconPos = FindObjectOfType<CrossingBeacon>().transform.position;
@@ -72,6 +74,11 @@ public class Person : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y < -3.5)
+        {
+            sr.sortingOrder += 4;
+        }
+
         if (fighting == null)
         {
             anim.SetBool("fighting", false);
