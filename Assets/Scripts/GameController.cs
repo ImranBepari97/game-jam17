@@ -18,6 +18,8 @@ public class GameController : MonoBehaviour {
     [SerializeField]
     Text scoreText;
 
+    [SerializeField]
+    Slider revolutionBar;
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +30,7 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+        revolutionBar.value = revolution / maxRevolution;
         scoreText.text = "Score: " + score;
 	}
 
