@@ -5,7 +5,7 @@ Jesticles GameJam17
 
 ## Authors
 
-* Alexis Andzans
+* Aleksis Andzans
 * Imran Bepari
 * Hannah Billingsley-Dadd
 * Will Chering
