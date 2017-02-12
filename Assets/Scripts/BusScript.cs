@@ -7,7 +7,6 @@ public class BusScript : MonoBehaviour
     [SerializeField] float waitTime;// time to wait at stop
     [SerializeField] float leaveTime;// time from leaving bus stop until end of journey
     [SerializeField] float waitPos;// X coordinate at which to stop
-    int time;
     private float speed;
     Vector3 startPlace;
     bool isStopped = false;
@@ -20,7 +19,6 @@ public class BusScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        time = 0;
         speed = 3;
         startPlace = transform.position;
     }
