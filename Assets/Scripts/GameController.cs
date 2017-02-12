@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
 
     [SerializeField]
     public int score;
+    [SerializeField]
     public int wave;
 
     [SerializeField]
@@ -18,6 +19,7 @@ public class GameController : MonoBehaviour {
     public float revolutionGain;
     [SerializeField]
     Text scoreText;
+    [SerializeField]
     Text waveText;
 
     [SerializeField]
