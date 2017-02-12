@@ -36,13 +36,17 @@ public class GameController : MonoBehaviour {
     void updateWave()
     {
         //updatewave method
+        if (score >= wave * 5)
+        {
+            wave++;
+        }
     }
 
 	// Update is called once per frame
 	void Update () {
         revolutionBar.value = revolution;
         scoreText.text = "Score: " + score;
-
+        waveText.text = "Wave: " + score;
         if(revolution >= maxRevolution)
         {
             endGame();
